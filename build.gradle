@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.8.1"
+}
+
+group 'org.computerDB'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.testng', name: 'testng', version: '7.3.0'
+    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.7'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.0.0-alpha-7'
+}
+test {
+
+    useTestNG() {
+        useDefaultListeners = true
+    }
+    ext.workingDirectory = 'build/'
+    scanForTestClasses = false
+    allure {
+        version = '2.8.1'
+        autoconfigure = true
+        resultsDir = file("${projectDir}/allure-results")
+    }
+
+    beforeTest { descriptor ->
+        logger.lifecycle("Gradle running test: ${descriptor}")
+    }
+}

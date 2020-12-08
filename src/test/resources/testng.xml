@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Site Task" parallel="classes">
+
+    <test verbose="1" name="computer-database.gatling.io test">
+        <classes>
+            <class name="SiteTest"/>
+        </classes>
+    </test>
+
+</suite>
